@@ -1,0 +1,577 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "video_GYgywr": {
+      "type": "video",
+      "disabled": true,
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "video": "shopify://files/videos/paper-animation.mp4",
+        "video_url": "",
+        "description": "",
+        "full_width": true,
+        "color_scheme": "background-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "wishit_collection_grid_1_49tkCa": {
+      "type": "wishit-collection-grid-1",
+      "blocks": {
+        "slide_pzN4Eg": {
+          "type": "slide",
+          "settings": {
+            "collection_title": "BEDDING",
+            "image": "shopify://shop_images/folding-laundry-on-the-bed.jpg",
+            "overlay_bg_color": "#ffffff",
+            "image_overlay_opacity": 0.5,
+            "title": ".",
+            "content": "<p><em><strong>Premium quality-</strong></em></p>",
+            "button-text": "SHOP",
+            "url": "shopify://collections/bedding"
+          }
+        },
+        "slide_4CYFbN": {
+          "type": "slide",
+          "settings": {
+            "collection_title": "CLOTHING",
+            "image": "shopify://shop_images/romper.webp",
+            "overlay_bg_color": "#ffffff",
+            "image_overlay_opacity": 0.6,
+            "title": ".",
+            "content": "<p><em><strong>Premium quality-</strong></em></p>",
+            "button-text": "SHOP",
+            "url": "shopify://collections/clothing"
+          }
+        },
+        "slide_XQjxzd": {
+          "type": "slide",
+          "settings": {
+            "collection_title": "FEEDING",
+            "image": "shopify://shop_images/baby-bottle-high-chair.jpg",
+            "overlay_bg_color": "#ffffff",
+            "image_overlay_opacity": 0.6,
+            "title": ".",
+            "content": "<p><em><strong>Premium quality-</strong></em></p>",
+            "button-text": "SHOP",
+            "url": "shopify://collections/feeding"
+          }
+        }
+      },
+      "block_order": [
+        "slide_pzN4Eg",
+        "slide_4CYFbN",
+        "slide_XQjxzd"
+      ],
+      "name": "Collection Grid",
+      "settings": {
+        "background-color": "#f9e7db",
+        "main-heading": "",
+        "main-heading-color": "#222222",
+        "heading-size": 32,
+        "label-size": 19,
+        "title-size": 23,
+        "content-size": 14,
+        "text-color": "#222222",
+        "background-button": "#e9aa88",
+        "button-text-color": "#000000",
+        "padding_top": 0,
+        "padding_bottom": 40
+      }
+    },
+    "tsapb_c3ee5db1_Hp7XAB": {
+      "type": "tsapb-c3ee5db1",
+      "blocks": {
+        "caption_kiHJNb": {
+          "type": "caption",
+          "settings": {
+            "caption": "",
+            "caption_size": "16",
+            "caption_weight": "400",
+            "caption_color": "#222222",
+            "caption_alternative_font": false,
+            "caption_font": "helvetica_n4"
+          }
+        },
+        "heading_dKkX3c": {
+          "type": "heading",
+          "settings": {
+            "heading": "Trusted by 1000+ Mothers",
+            "heading_size": "32",
+            "heading_style": "regular",
+            "heading_color": "#222222",
+            "heading_alternative_font": false,
+            "heading_font": "helvetica_n4"
+          }
+        },
+        "text_9kLQxc": {
+          "type": "text",
+          "settings": {
+            "description": "<p><em>everything your baby needs</em></p>",
+            "description_size": "16",
+            "description_color": "#222222",
+            "description_alternative_font": false,
+            "description_font": "helvetica_n4"
+          }
+        }
+      },
+      "block_order": [
+        "caption_kiHJNb",
+        "heading_dKkX3c",
+        "text_9kLQxc"
+      ],
+      "name": "Wavy Banner",
+      "settings": {
+        "content_alignment": "center",
+        "content_layout_desktop": "vertical",
+        "wave_color": "#e9aa88",
+        "enable_wave_animation": true,
+        "section_width": 77,
+        "section_max_width": "",
+        "vertical_padding": 0,
+        "vertical_margin": 0,
+        "vertical_padding_mobile": 14,
+        "vertical_margin_mobile": 14
+      }
+    },
+    "tsapb_4bae208c_nrzDCn": {
+      "type": "tsapb-4bae208c",
+      "blocks": {
+        "icon_zawKt9": {
+          "type": "icon",
+          "settings": {
+            "icon_type": "icon",
+            "icon": "hands",
+            "font_awesome": "",
+            "icon_title": "hand made"
+          }
+        },
+        "icon_VbbTy9": {
+          "type": "icon",
+          "settings": {
+            "icon_type": "icon",
+            "icon": "seedling",
+            "font_awesome": "",
+            "icon_title": "special material"
+          }
+        },
+        "icon_3aiVgq": {
+          "type": "icon",
+          "settings": {
+            "icon_type": "icon",
+            "icon": "shipping_fast",
+            "font_awesome": "",
+            "icon_title": "fast shipping"
+          }
+        },
+        "icon_UpjAp3": {
+          "type": "icon",
+          "settings": {
+            "icon_type": "icon",
+            "icon": "check_circle",
+            "font_awesome": "",
+            "icon_title": "baby safe"
+          }
+        }
+      },
+      "block_order": [
+        "icon_zawKt9",
+        "icon_VbbTy9",
+        "icon_3aiVgq",
+        "icon_UpjAp3"
+      ],
+      "name": "4 icons",
+      "settings": {
+        "icon_color": "#000000",
+        "icon_size": 24,
+        "icon_title_size": "14",
+        "icon_title_color": "#000000",
+        "icon_title_style": "regular",
+        "icons_per_row_desktop": 4,
+        "icons_mobile_layout": "slider",
+        "section_width": 70,
+        "section_max_width": "",
+        "vertical_padding": 24,
+        "vertical_margin": 28,
+        "vertical_padding_mobile": 24,
+        "vertical_margin_mobile": 24,
+        "section_background_style": "color",
+        "section_background": "#e9aa88",
+        "section_gradient": "linear-gradient(to right, #fed951, #ff46c7)",
+        "enable_animation": false
+      }
+    },
+    "6a3bb789-ce10-45f5-ae67-e2063ef8c76b": {
+      "type": "image-banner",
+      "blocks": {
+        "template--18309637636369__6a3bb789-ce10-45f5-ae67-e2063ef8c76b-168016437761699a6e-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "<em>Upto 30% Off</em>",
+            "heading_size": "h1"
+          }
+        },
+        "template--18309637636369__6a3bb789-ce10-45f5-ae67-e2063ef8c76b-168016437761699a6e-1": {
+          "type": "text",
+          "settings": {
+            "text": "Everything your baby needs | Trusted by 1000+ mothers",
+            "text_style": "caption-with-letter-spacing"
+          }
+        },
+        "template--18309637636369__6a3bb789-ce10-45f5-ae67-e2063ef8c76b-168016437761699a6e-2": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Shop products",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "template--18309637636369__6a3bb789-ce10-45f5-ae67-e2063ef8c76b-168016437761699a6e-0",
+        "template--18309637636369__6a3bb789-ce10-45f5-ae67-e2063ef8c76b-168016437761699a6e-1",
+        "template--18309637636369__6a3bb789-ce10-45f5-ae67-e2063ef8c76b-168016437761699a6e-2"
+      ],
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "image": "shopify://shop_images/supplies-for-expecting-baby.jpg",
+        "image_2": "shopify://shop_images/baby-toes.jpg",
+        "image_overlay_opacity": 30,
+        "image_height": "medium",
+        "desktop_content_position": "bottom-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "accent-2",
+        "image_behavior": "ambient",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "custom_liquid_4czQrf": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n.marquee-wrapper{overflow:hidden;width:100%;}\n.marquee-track{display:flex;animation:scroll 30s linear infinite;}\n.testimonial{flex:0 0 300px;text-align:center;margin:0 20px;}\n.stars{color:black;font-size:1.2em;margin-bottom:10px;}\nblockquote{font-style:italic;margin:0;}\n@keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-100%);}}\n</style>\n\n<div class=\"marquee-wrapper\">\n  <div class=\"marquee-track\">\n    {% assign reviews = \"Love soft fabrics|Emma|5,Great quality|Noah|4,Amazing support|Olivia|5,Super-soft onesies|Liam|4,Cute designs|Ava|5,Perfect gift|Sophia|5,Sizing perfect|Ethan|4,Gender-neutral love|Isabella|5,Survived washes|Lucas|4\" | split: ',' %}\n    {% for r in reviews %}\n      {% assign parts = r | split: '|' %}\n      {% assign text = parts[0] %}\n      {% assign name = parts[1] %}\n      {% assign star_count = parts[2] | plus: 0 %}\n      <div class=\"testimonial\">\n        <div class=\"stars\">\n          {% for i in (1..star_count) %}★{% endfor %}\n        </div>\n        <blockquote>“{{ text }}”</blockquote>\n        <p>- {{ name }}</p>\n      </div>\n    {% endfor %}\n  </div>\n</div>",
+        "color_scheme": "accent-2",
+        "padding_top": 40,
+        "padding_bottom": 28
+      }
+    },
+    "multirow_Mi9mPN": {
+      "type": "multirow",
+      "blocks": {
+        "row_PjUcBH": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/fathers-day.jpg",
+            "caption": "",
+            "heading": "<em>Made with Love 🖤</em>",
+            "text": "<p>.</p><p>.</p><p>. </p><p>Dress Your Baby in Garments Crafted with Endless Love and Care</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_qBVTWP": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/baby-girl-feet.jpg",
+            "caption": "",
+            "heading": "<em>Thoughtfully Designed ✂</em>",
+            "text": "<p>.</p><p>.</p><p>.</p><p>Every stitch,seam and fabric choice is carefully selected to ensure comfort meets durability</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_dztjAy": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/baby-girls-hand-on-dads-hand.jpg",
+            "caption": "",
+            "heading": "<em>Grow with Us🌱</em>",
+            "text": "<p>.</p><p>.</p><p>.</p><p>Crafted to adapt as your little one grows</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_PjUcBH",
+        "row_qBVTWP",
+        "row_dztjAy"
+      ],
+      "name": "t:sections.multirow.presets.name",
+      "settings": {
+        "image_height": "small",
+        "desktop_image_width": "medium",
+        "heading_size": "h2",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "center",
+        "image_layout": "alternate-left",
+        "section_color_scheme": "background-1",
+        "row_color_scheme": "background-1",
+        "mobile_content_alignment": "left",
+        "padding_top": 16,
+        "padding_bottom": 36
+      }
+    },
+    "tsapb_e1c414da_eQbHnk": {
+      "type": "tsapb-e1c414da",
+      "blocks": {
+        "heading_Rkddnr": {
+          "type": "heading",
+          "settings": {
+            "title": "Check out our Products",
+            "label": "",
+            "description": "",
+            "headingTextSize": "40",
+            "headingAlignment": "left",
+            "headingTextColor": "#222222"
+          }
+        },
+        "products_Wackzn": {
+          "type": "products",
+          "settings": {
+            "product_list": [
+              "baby-bedding-set",
+              "feeding-bottle",
+              "feeding-bottle-green",
+              "full-length-romper",
+              "green-bedding-set",
+              "half-length-romper",
+              "pink-bedding-set"
+            ]
+          }
+        }
+      },
+      "block_order": [
+        "heading_Rkddnr",
+        "products_Wackzn"
+      ],
+      "disabled": true,
+      "name": "Featured products",
+      "settings": {
+        "imageAspectRatio": "square",
+        "productTextAlignment": "center",
+        "productCardTextColor": "#222222",
+        "productCardDiscountedPriceColor": "#ce1900",
+        "productCardBackgroundColor": "",
+        "productCardBorderColor": "",
+        "productCardRadius": 10,
+        "showSecondImageOnHoverCheckbox": true,
+        "showVendorCheckbox": false,
+        "showProductRatingCheckbox": false,
+        "showAddToCartCheckbox": false,
+        "addToCartButtonStyle": "filled",
+        "addToCartButtonTextColor": "#ffffff",
+        "addToCartButtonColor": "#222222",
+        "addToCartButtonCornerRadius": 4,
+        "visibleItemsDesktop": "4",
+        "visibleItemsMobile": "1",
+        "productCardGapSize": 16,
+        "sectionMaxWidth": 1200,
+        "sectionMakeFullWidthCheckbox": false,
+        "sectionPaddingTop": 36,
+        "sectionPaddingBottom": 36,
+        "sectionBackgroundColor": "",
+        "arrowsAndThumbProgressBarColor": "#222222"
+      }
+    },
+    "tsapb_32557de6_W7VF6d": {
+      "type": "tsapb-32557de6",
+      "blocks": {
+        "heading_PXXrKJ": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_alignment": "center",
+            "heading_size": "32",
+            "heading_style": "regular",
+            "heading_color": "#222222"
+          }
+        },
+        "products_exBHbD": {
+          "type": "products",
+          "settings": {
+            "product_list": [
+              "baby-bedding-set",
+              "feeding-bottle",
+              "full-length-romper",
+              "green-bedding-set",
+              "pink-bedding-set",
+              "feeding-bottle-green"
+            ]
+          }
+        },
+        "banner_EyHipB": {
+          "type": "banner",
+          "settings": {
+            "banner_image": "shopify://shop_images/baby-girl-on-couch-lookingat-dad-smiling.jpg",
+            "banner_overlay_color": "#222222",
+            "bannner_overlay_opacity": 0,
+            "banner_placement": "left",
+            "desktop_content_position": "bottom-left",
+            "mobile_content_position": "center",
+            "banner_heading": "Our Products",
+            "banner_heading_size": "48",
+            "banner_heading_style": "regular",
+            "banner_description": "",
+            "banner_description_size": "16",
+            "banner_text_color": "#fefefe",
+            "banner_button_label": "View",
+            "banner_button_link": "shopify://collections/all",
+            "banner_button_style": "solid",
+            "banner_button_text_color": "#000000",
+            "banner_button_background_color": "#e9aa88",
+            "banner_button_border_color": "#222222",
+            "banner_button_corner_radius": 0
+          }
+        }
+      },
+      "block_order": [
+        "heading_PXXrKJ",
+        "products_exBHbD",
+        "banner_EyHipB"
+      ],
+      "name": "All products",
+      "settings": {
+        "image_aspect_ratio": "square",
+        "product_card_background_color": "",
+        "product_card_border_color": "",
+        "product_card_gap": 26,
+        "cards_radius": 10,
+        "show_second_image_on_hover": false,
+        "show_vendor": false,
+        "show_product_rating": false,
+        "product_text_alignment": "left",
+        "product_name_vendor_size": "14",
+        "price_size": "14",
+        "product_card_text_color": "#222222",
+        "product_card_discounted_price_color": "#222222",
+        "section_background": "",
+        "section_width": 90,
+        "section_max_width": "",
+        "vertical_padding": 38,
+        "vertical_margin": 16,
+        "vertical_padding_mobile": 46,
+        "vertical_margin_mobile": 18
+      }
+    },
+    "wishit_testimonial_b3BLw9": {
+      "type": "wishit-testimonial",
+      "blocks": {
+        "review_8nkhA6": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "heading": "Liam",
+            "review-content": "<p><em>\"Cute designs\"</em></p>"
+          }
+        },
+        "review_A4W9Fx": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "heading": "Sarah",
+            "review-content": "<p><em>\"Perfect gift for little ones\"</em></p>"
+          }
+        },
+        "review_B4VXLb": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "heading": "Josephina",
+            "review-content": "<p><em>\"Good customer support\"</em></p>"
+          }
+        },
+        "review_rCU9cU": {
+          "type": "review",
+          "settings": {
+            "rating": 4,
+            "heading": "Robert",
+            "review-content": "<p><em>\"perfectly fits little ones\"</em></p>"
+          }
+        },
+        "review_dqqQNE": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "heading": "Sydney",
+            "review-content": "<p><em>\"Absolutely love the quality\"</em></p>"
+          }
+        }
+      },
+      "block_order": [
+        "review_8nkhA6",
+        "review_A4W9Fx",
+        "review_B4VXLb",
+        "review_rCU9cU",
+        "review_dqqQNE"
+      ],
+      "name": "WishIt Testimonial",
+      "settings": {
+        "template": "comment",
+        "background-color": "#f9e7db",
+        "main-heading": "Customer Testimonials",
+        "heading-color": "",
+        "heading-size": 26,
+        "reviews-color": "#222222",
+        "rating-color": "#f9e7db",
+        "comment-box-color": "#e9aa88",
+        "review-title-size": 25,
+        "review-content-size": 15,
+        "slider_enable": true
+      }
+    },
+    "wishit_newsletter_6BdLTe": {
+      "type": "wishit-newsletter",
+      "name": "WishIt Newsletter Form",
+      "settings": {
+        "image": "shopify://shop_images/contact-us-phone.jpg",
+        "heading": "Discover more with Little Steps",
+        "tagline": "<p><em>Discover all of the latest news, stories, tips and offers. Sign up today and get 10% off your next order.<br/></em><br/></p>",
+        "heading_size": 28,
+        "background-color": "",
+        "input_field_background": "#fefefe",
+        "button_text": "SUBMIT",
+        "success_message": "Form Submitted Succesfully!",
+        "error_message": "Something Went Wrong!",
+        "redirect_url": "",
+        "button-background-color": "#444444",
+        "button-text-color": "#ffffff",
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "video_GYgywr",
+    "wishit_collection_grid_1_49tkCa",
+    "tsapb_c3ee5db1_Hp7XAB",
+    "tsapb_4bae208c_nrzDCn",
+    "6a3bb789-ce10-45f5-ae67-e2063ef8c76b",
+    "custom_liquid_4czQrf",
+    "multirow_Mi9mPN",
+    "tsapb_e1c414da_eQbHnk",
+    "tsapb_32557de6_W7VF6d",
+    "wishit_testimonial_b3BLw9",
+    "wishit_newsletter_6BdLTe"
+  ]
+}

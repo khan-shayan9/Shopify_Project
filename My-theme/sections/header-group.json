@@ -1,0 +1,113 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement-bar-0": {
+          "type": "announcement",
+          "settings": {
+            "text": "Welcome to our store, Free shipping on orders over Rs 2500",
+            "text_alignment": "center",
+            "color_scheme": "background-1",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement-bar-0"
+      ],
+      "settings": {}
+    },
+    "custom_liquid_yfMzEj": {
+      "type": "custom-liquid",
+      "name": "Logo",
+      "settings": {
+        "custom_liquid": "<!-- 1. Load Sour Gummy -->\n<link href=\"https://fonts.googleapis.com/css2?family=Sour+Gummy:wght@200&display=swap\" rel=\"stylesheet\">\n\n<style>\n.little-steps-wrapper{\n  display:flex;\n  justify-content:center;\n  align-items:center;\n  min-height:60px;\n  padding:8px 0;\n  font-family:'Sour Gummy',cursive;\n  font-size:clamp(2.4rem,5vw,3.4rem);\n  font-weight:400;\n  letter-spacing:.0em;\n /* <-- makes it all lower-case */\n}\n\n.little-steps-wrapper span{\n  opacity:0;\n  animation:fadeIn .12s forwards;\n}\n@keyframes fadeIn{to{opacity:1;}}\n\n@keyframes wiggle{\n  0%,100%{transform:rotate(0deg);}\n  10%{transform:rotate(3deg);}\n  20%{transform:rotate(-3deg);}\n  30%{transform:rotate(2deg);}\n  40%{transform:rotate(-2deg);}\n  50%{transform:rotate(1deg);}\n  60%{transform:rotate(-1deg);}\n}\n\n.little-steps-wrapper{\n  animation:wiggle 5s ease-in-out infinite;\n  animation-delay:1.4s;\n}\n</style>\n\n<div class=\"little-steps-wrapper\" id=\"glutenReveal\"></div>\n\n<script>\n(function(){\n  const text   = 'Little Steps';   // lower-case\n  const target = document.getElementById('glutenReveal');\n  text.split('').forEach((letter,i)=>{\n    const span = document.createElement('span');\n    span.textContent = letter === ' ' ? '\\u00A0' : letter;\n    span.style.animationDelay = (i*120)+'ms';\n    target.appendChild(span);\n  });\n})();\n</script>",
+        "color_scheme": "accent-2",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "header": {
+      "type": "header",
+      "custom_css": [
+        ".header__heading-link .h2 {font-size: 16px;}"
+      ],
+      "settings": {
+        "logo_position": "middle-center",
+        "menu": "main-menu",
+        "menu_type_desktop": "dropdown",
+        "sticky_header_type": "reduce-logo-size",
+        "show_line_separator": false,
+        "color_scheme": "accent-1",
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "mobile_logo_position": "center",
+        "margin_bottom": 0,
+        "padding_top": 8,
+        "padding_bottom": 8
+      }
+    },
+    "ss_back_to_top_L9JYa9": {
+      "type": "ss-back-to-top",
+      "name": "SS - Back to top #3",
+      "settings": {
+        "horizontal_position": "right",
+        "horizontal_dst_to_edge": 30,
+        "horizontal_dst_to_edge_mobile": 20,
+        "vertical_dst_to_edge": 50,
+        "vertical_dst_to_edge_mobile": 50,
+        "circle_size": 46,
+        "circle_size_mobile": 46,
+        "progress_thickness": 4,
+        "circle_bg_color": "#f9e7db",
+        "circle_bg_hover_color": "#cbbeb0",
+        "progress_color": "#f5f5f5",
+        "progress_active_color": "#000000",
+        "arrow_color": "#000000",
+        "arrow_hover_color": "#ffffff"
+      }
+    },
+    "ss_wave_2_WVp8nT": {
+      "type": "ss-wave-2",
+      "name": "SS - Wave #2",
+      "settings": {
+        "wave_height": 100,
+        "wave_height_mobile": 80,
+        "wave_animation": true,
+        "wave_rotate": true,
+        "wave_color": "#e9aa88",
+        "background_color": "#f9e7db",
+        "background_gradient": "",
+        "border_color": "#000000",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_horizontal": 0,
+        "padding_horizontal_mobile": 0,
+        "full_width": true,
+        "content_width": 120,
+        "border_thickness": 0
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "custom_liquid_yfMzEj",
+    "header",
+    "ss_back_to_top_L9JYa9",
+    "ss_wave_2_WVp8nT"
+  ]
+}

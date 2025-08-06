@@ -1,0 +1,332 @@
+<div
+  class="wishit-testimonial wishit-testimonial-{{ section.settings.template }}"
+  style="background-color: {{ section.settings.background-color }};"
+>
+  <div class="page-width">
+    <div class="inner-wishit-testimonial">
+      {% if section.settings['main-heading'] != blank %}
+        <h3 style="font-size:{{ section.settings.heading-size }}px; color:{{ section.settings.heading-color }};">
+          {{ section.settings['main-heading'] }}
+        </h3>
+      {% endif %}
+      <div class="single-wishit-testimonials-holder{% if section.settings.slider_enable == true %} slider_enable{% endif %}">
+        {% for block in section.blocks %}
+          <div class="single-wishit-testimonials">
+            {% if block.settings['review-avtar'] != blank %}
+              <div class="wishit-testimonial-review-image">
+                <img
+                  src="{{ block.settings.review-avtar | img_url: '100x100', crop: 'cover' }}"
+                  width="100"
+                  height="100"
+                >
+              </div>
+            {% endif %}
+            <div class="wishit-comment-holder">
+              {% if block.settings.heading != blank %}
+                <div class="wishit-testimonial-review-heading">{{ block.settings.heading }}</div>
+              {% endif %}
+              <div class="wishit-testimonial-reviews-holder">
+                <div class="single-block-review-testimonial">
+                  {% for i in (1..5) %}
+                    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5.2 18a.8.8 0 01-.792-.914l.743-5.203-2.917-2.917a.8.8 0 01.434-1.355l4.398-.733 2.218-4.435a.8.8 0 011.435.008l2.123 4.361 4.498.801a.8.8 0 01.425 1.353l-2.917 2.917.744 5.203a.8.8 0 01-1.154.828l-4.382-2.22-4.502 2.223A.792.792 0 015.2 18z"
+                      {% if block.settings.rating >= i %} fill="{{ section.settings.rating-color }}" {% else %} fill="transparent" {% endif %}></path>
+                    </svg>
+                  {% endfor %}
+                </div>
+              </div>
+              {% if block.settings['review-content'] != blank %}
+                <div
+                  class="wishit-testimonial-review-text"
+                  style="color: {{ section.settings.reviews-color }}; font-size: {{ section.settings.review-content-size }}px;"
+                >
+                  {{ block.settings['review-content'] }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  {% if section.settings.reviews-color != blank %}
+  #shopify-section-{{ section.id }} .single-wishit-testimonials {
+      border: 1px solid {{ section.settings.reviews-color }};
+  }
+  {% endif %}
+
+  #shopify-section-{{ section.id }} .single-block-review-testimonial svg path {
+      stroke: {{ section.settings.rating-color }};
+  }
+  .single-wishit-testimonials-holder{
+    padding: 20px;
+  }
+  .wishit-comment-holder{
+    padding: 10px;
+  }
+  .single-wishit-testimonials-holder.slider_enable .single-wishit-testimonials {
+      padding: 30px 30px;
+  }
+  .single-wishit-testimonials-holder.slider_enable {
+      overflow-x: scroll;
+      flex-wrap: unset;
+  }
+  .single-wishit-testimonials-holder.slider_enable .single-wishit-testimonials:last-child {
+      margin-right: 0;
+  }
+  .single-wishit-testimonials-holder {
+      display: flex;
+      width: 100%;
+      flex-wrap: wrap;
+  }
+  .single-wishit-testimonials {
+      vertical-align: middle;
+      text-align: center;
+      padding: 30px 0px;
+      width: 31%;
+      margin-bottom: 20px;
+      margin-right: 2.3%;
+  }
+  .wishit-testimonial-review-image img {
+      width: 100%;
+  }
+  .single-block-review-testimonial {
+      display: flex;
+      justify-content: center;
+  }
+  .single-block-review-testimonial svg {
+      width: 25px;
+  }
+  .wishit-testimonial h3 {
+      text-align: center;
+      font-weight: 600;
+      margin: 0 0 30px 0;
+  }
+  .wishit-testimonial-review-image {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 10px;
+      border-radius: 50%;
+      overflow: hidden;
+  }
+  .wishit-testimonial-review-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+  .wishit-testimonial {
+      padding: 50px 0;
+  }
+
+  .wishit-testimonial-review-heading{
+    font-weight: bold;
+    color: {{ section.settings.reviews-color }};
+    font-size: {{ section.settings.review-title-size }}px;
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .slider_enable::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .slider_enable {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  @media only screen and (max-width: 767px) {
+    .single-wishit-testimonials {
+      width: 100%;
+      margin-bottom: 20px;
+      margin-right: 0;
+    }
+    .single-wishit-testimonials-holder.slider_enable .single-wishit-testimonials {
+      margin-right: 20px;
+    }
+    .single-wishit-testimonials:last-child {
+      margin: 0;
+    }
+    .single-wishit-testimonials-holder.slider_enable .single-wishit-testimonials:last-child {
+      margin-right: 0;
+    }
+    .single-wishit-testimonials-holder.slider_enable .single-wishit-testimonials {
+      margin-bottom: 0;
+    }
+    .single-wishit-testimonials-holder.slider_enable {
+      padding: 10px 0;
+    }
+  }
+
+  /**Style 2 **/
+  .wishit-testimonial.wishit-testimonial-comment .wishit-testimonial-review-image {
+      border: 5px solid {{ section.settings.comment-box-color }};
+      z-index: 1;
+      position: relative;
+      margin-bottom: -45px;
+  }
+  .wishit-testimonial.wishit-testimonial-comment .single-wishit-testimonials{
+    position: relative;
+  }
+  .wishit-testimonial.wishit-testimonial-comment .single-wishit-testimonials {
+    padding: 0px !important;
+    border: none !important;
+  }
+  .wishit-testimonial.wishit-testimonial-comment .wishit-comment-holder{
+    background: {{ section.settings.comment-box-color }};
+    padding: 10px;
+    border-radius: 10px;
+    padding-top: 50px;
+    margin-bottom: 50px;
+    position: relative;
+    filter: drop-shadow(8px 15px 6px #00000033);
+  }
+
+  .wishit-testimonial.wishit-testimonial-comment .wishit-comment-holder:after{
+    content: "";
+    position: absolute;
+    height: 44px;
+    width: 44px;
+    bottom: -16px;
+    left: 55%;
+    background-color: {{ section.settings.comment-box-color }};
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    transform: rotate(135deg);
+    border-radius: 5px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "WishIt Testimonial",
+  "settings": [
+    {
+      "type": "select",
+      "id": "template",
+      "label": "Template",
+      "options": [
+        {
+          "value": "comment",
+          "label": "Comment Style"
+        },{
+          "value": "simple",
+          "label": "Simple"
+        }
+      ],
+      "default": "comment"
+    },
+    {
+      "type": "color",
+      "id": "background-color",
+      "label": "Background Color"
+    },
+    {
+      "type": "text",
+      "id": "main-heading",
+      "label": "Heading",
+      "default": "Customer Testimonials"
+    },
+    {
+      "type": "color",
+      "id": "heading-color",
+      "label": "Heading Color"
+    },
+    {
+      "type": "range",
+      "id": "heading-size",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Size",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Reviews Settings"
+    },
+    {
+      "type": "color",
+      "id": "reviews-color",
+      "label": "Primary Color"
+    },
+    {
+      "type": "color",
+      "id": "rating-color",
+      "label": "Rating Color",
+      "default": "#F7BC01"
+    },
+    {
+      "type": "color",
+      "id": "comment-box-color",
+      "label": "Comment Box Color",
+      "default": "#FFFFFF",
+      "info": "Applicable only to Comment Style Template"
+    },
+    {
+      "type": "range",
+      "id": "review-title-size",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "review-content-size",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Content Size",
+      "default": 15
+    },
+    {
+      "type": "checkbox",
+      "id": "slider_enable",
+      "label": "Slider Enable"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Reviews",
+      "type": "review",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating",
+          "min": 1,
+          "max": 5,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Name"
+        },
+        {
+          "type": "image_picker",
+          "id": "review-avtar",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "review-content",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WishIt Testimonial"
+    }
+  ]
+}
+{% endschema %}

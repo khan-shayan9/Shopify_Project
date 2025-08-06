@@ -1,0 +1,109 @@
+{%- for block in section.blocks -%}
+  {%- case block.type -%}
+    {%- when 'announcement' -%}
+      <div
+        class="announcement-bar color-{{ block.settings.color_scheme }} gradient"
+        role="region"
+        aria-label="{{ 'sections.header.announcement' | t }}"
+        data-announcement="{{ block.id }}"
+        {{ block.shopify_attributes }}
+      >
+        {%- if block.settings.text != blank -%}
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}" class="announcement-bar__link link link--text focus-inset animate-arrow">
+          {%- endif -%}
+            <div class="page-width">
+              <p class="announcement-bar__message {{ block.settings.text_alignment }} h5">
+                <span>{{ block.settings.text | escape }}</span>
+                {%- if block.settings.link != blank -%}
+                  {% render 'icon-arrow' %}
+                {%- endif -%}
+                <button type="button" class="announcement-bar__close" aria-label="{{ 'general.accessibility.close' | t }}">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M13 1L1 13M1 1L13 13" stroke="currentColor" stroke-width="2"/></svg>
+                </button>
+              </p>
+            </div>
+          {%- if block.settings.link != blank -%}
+            </a>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+  {%- endcase -%}
+{%- endfor -%}
+
+{% schema %}
+{
+  "name": "t:sections.announcement-bar.name",
+  "max_blocks": 12,
+  "class": "announcement-bar-section",
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "t:sections.announcement-bar.blocks.announcement.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Welcome to our store",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "options": [
+            { "value": "left",   "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right",  "label": "Right" }
+          ],
+          "default": "center",
+          "label": "Alignment"
+        },
+        {
+          "type": "select",
+          "id": "color_scheme",
+          "options": [
+            { "value": "accent-1", "label": "Accent 1" },
+            { "value": "accent-2", "label": "Accent 2" },
+            { "value": "background-1", "label": "Background 1" },
+            { "value": "background-2", "label": "Background 2" },
+            { "value": "inverse", "label": "Inverse" }
+          ],
+          "default": "accent-1",
+          "label": "Color scheme"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "default": { "blocks": [ { "type": "announcement" } ] }
+}
+{% endschema %}
+
+<script>
+(function(){
+  document.querySelectorAll('.announcement-bar[data-announcement]').forEach(bar=>{
+    const id  = bar.dataset.announcement;
+    const key = 'closed_announcement_' + id;
+
+    /* Already dismissed? */
+    if(localStorage.getItem(key)){
+      bar.style.display='none';
+      return;
+    }
+
+    /* Close button */
+    const closeBtn = bar.querySelector('.announcement-bar__close');
+    if(closeBtn){
+      closeBtn.addEventListener('click',()=>{
+        bar.style.display='none';
+        /* store for 7 days (remove expiry date for indefinite) */
+        localStorage.setItem(key,'1');
+      });
+    }
+  });
+})();
+</script>

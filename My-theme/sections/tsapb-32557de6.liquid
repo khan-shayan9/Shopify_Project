@@ -1,0 +1,1016 @@
+<!-- --VERSION-16-- -->
+
+{% style %}
+:root {
+--vtl-neutral-100: #222;
+--vtl-neutral-70: #5e5e5e;
+--vtl-neutral-01: #fff;
+--vtl-alpha-black-10: rgba(34, 34, 34, 0.1);
+--vtl-size-0: 0px;
+--vtl-size-1: 1px;
+--vtl-size-2: 2px;
+--vtl-size-4: 4px;
+--vtl-size-6: 6px;
+--vtl-size-8: 8px;
+--vtl-size-12: 12px;
+--vtl-size-14: 14px;
+--vtl-size-16: 16px;
+--vtl-size-20: 20px;
+--vtl-size-24: 24px;
+--vtl-size-32: 32px;
+--vtl-size-40: 40px;
+--vtl-font-weight-400: 400;
+--vtl-font-weight-600: 600;
+--vtl-line-height-140: 1.4;
+--vtl-text-decoration-none: none;
+--vtl-text-decoration-underline: underline;
+--vtl-text-decoration-line-through: line-through;
+--vtl-border-width-1: var(--vtl-size-1);
+--vtl-color-bg-fill-default-on-light: var(--vtl-neutral-100);
+--vtl-color-bg-fill-inverse-on-light: var(--vtl-neutral-01);
+--vtl-color-text-default-on-light: var(--vtl-neutral-100);
+--vtl-color-text-disable-on-light: var(--vtl-neutral-70);
+--vtl-color-text-on-bg-fill-on-light: var(--vtl-neutral-01);
+--vtl-color-border-hover-on-dark: var(--vtl-alpha-black-10);
+--vtl-space-0: var(--vtl-size-0);
+--vtl-space-2: var(--vtl-size-2);
+--vtl-space-4: var(--vtl-size-4);
+--vtl-space-6: var(--vtl-size-6);
+--vtl-space-8: var(--vtl-size-8);
+--vtl-space-12: var(--vtl-size-12);
+--vtl-space-16: var(--vtl-size-16);
+--vtl-space-20: var(--vtl-size-20);
+--vtl-space-24: var(--vtl-size-24);
+--vtl-space-32: var(--vtl-size-32);
+--vtl-space-40: var(--vtl-size-40);
+--vtl-font-size-14: var(--vtl-size-14);
+}
+
+
+{% endstyle %}
+
+<!-- --UUID-32557de6-- -->
+
+<section class="Vtls-{{ section.id | handle }}">
+	{%- capture card_has_bg_color -%}
+		{%- case section.settings.product_card_background_color -%}
+			{%- when '' or 'rgba(0,0,0,0)' -%}
+				false
+			{%- else -%}
+				true
+		{%- endcase -%}
+	{%- endcapture -%}
+	{%- capture card_has_border_color -%}
+		{%- case section.settings.product_card_border_color -%}
+			{%- when '' or 'rgba(0,0,0,0)' -%}
+				false
+			{%- else -%}
+				true
+		{%- endcase -%}
+	{%- endcapture -%}
+
+	{% for block in section.blocks %}
+		{% case block.type %}
+			{% when "heading" %}
+				{% assign heading_block = block %}
+			{% when "products" %}
+				{% assign products_block = block %}
+			{% when "banner" %}
+				{% assign banner_block = block %}
+		{% endcase %}
+	{% endfor %}
+
+	<div class="VtlsProductsGridBanner
+						{% if section.settings.section_width == 100 %}VtlsProductsGridBanner--fullWidth{% endif %}">
+		{%- if heading_block.settings.heading != blank -%}
+			<h2
+				class="
+					VtlsProductsGridBanner__Heading
+					VtlsProductsGridBanner__Heading--style-{{ heading_block.settings.heading_style }}
+					VtlsProductsGridBanner__Heading--alignment-{{ heading_block.settings.heading_alignment }}
+				"
+				{{ heading_block.shopify_attributes }}
+			>
+				{{ heading_block.settings.heading }}
+			</h2>
+		{%- endif -%}
+		<div class="VtlsProductsGridBanner__Content 
+				VtlsProductsGridBanner__Content--bannerPlacement-{{ banner_block.settings.banner_placement }}">
+			<div class="VtlsProductsGridBanner__Banner" {{ banner_block.shopify_attributes }}>
+				<div class="VtlsProductsGridBannerImage">
+					{%- if banner_block.settings.banner_image != blank -%}
+						<div class="VtlsProductsGridBannerImage__ImageContainer">
+							{{-
+								banner_block.settings.banner_image
+								| image_url: width: section.settings.image_desktop.width
+								| image_tag:
+									sizes: "100vw",
+									widths: "400, 600, 800, 1200, 1600, 1800, 2400, 2800, 3200",
+									fetchpriority: "low",
+									loading: "lazy",
+									class: "VtlsProductsGridBannerImage__Image"
+							-}}
+						</div>
+					{%- else -%}
+						<img
+							src="data:image/webp;base64,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"
+							alt="Image with an abstract figure"
+							width="580"
+							height="580"
+							loading="lazy"
+							sizes="100vw"
+							fetchpriority="low"
+							class="VtlsProductsGridBannerImage__Image"
+						>
+					{%- endif -%}
+				</div>
+				<div
+					class="
+						VtlsProductsGridBannerTextContent
+						VtlsProductsGridBannerTextContent--desktopPosition-{{ banner_block.settings.desktop_content_position }}
+						VtlsProductsGridBannerTextContent--mobilePosition-{{ banner_block.settings.mobile_content_position }}
+						{% if products_block.settings.product_list.count <= 3 and section.settings.image_aspect_ratio == 'landscape' %}VtlsProductsGridBannerTextContent--smallPadding{% endif %}
+					"
+				>
+					{%- if banner_block.settings.banner_heading != blank -%}
+						<h2 class="VtlsProductsGridBannerTextContent__Heading VtlsProductsGridBannerTextContent__Heading--style-{{ banner_block.settings.banner_heading_style }}">
+							{{ banner_block.settings.banner_heading }}
+						</h2>
+					{%- endif -%}
+					{%- if banner_block.settings.banner_description != blank -%}
+						<div class="VtlsProductsGridBannerTextContent__Description">
+							{{ banner_block.settings.banner_description }}
+						</div>
+					{%- endif -%}
+					{% if banner_block.settings.banner_button_label != blank %}
+						<div class="VtlsProductsGridBannerTextContent__Button">
+							<a
+								class="VtlsProductsGridBannerTextContentButton VtlsProductsGridBannerTextContentButton--{{ banner_block.settings.banner_button_style }}"
+								href="{{ banner_block.settings.banner_button_link | default: "#" }}"
+							>
+								{{- banner_block.settings.banner_button_label | escape -}}
+							</a>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+			<div class="VtlsProductsGridBanner__Products" {{ products_block.shopify_attributes }}>
+				{% if products_block.settings.product_list.count > 0 %}
+					{% for product in products_block.settings.product_list %}
+						<div
+							class="
+								VtlsProductsGridProdCard
+								{% if card_has_border_color == 'true' %}VtlsProductsGridProdCard--hasBorder{% endif %}
+								{% if card_has_bg_color == 'true' %}VtlsProductsGridProdCard--hasBackground{% endif %}"
+							{%- if section.settings.show_second_image_on_hover and product.images[1] -%}
+								onmouseover="this.querySelector('img').src = '{{ product.images[1].src | image_url }}'"
+								onmouseout="this.querySelector('img').src = '{{ product.images[0].src | image_url }}'"
+							{%- endif -%}
+						>
+							<div class="VtlsProductsGridProdCard__Container">
+								<div class="VtlsProductsGridProdCardImageContainer 
+										 VtlsProductsGridProdCardImageContainer--{{ section.settings.image_aspect_ratio }}
+										 {% if section.settings.show_second_image_on_hover == false %}
+											VtlsProductsGridProdCardImageContainer--defaultHover
+										 {% endif %}">
+									<a href="{{ product.url }}">
+										<img
+											src="{{ product.images[0].src | image_url }}"
+											alt="{{ product.images[0].alt }}"
+											width="100%"
+											height="100%"
+										>
+									</a>
+								</div>
+								<div class="VtlsProductsGridProdCardTextContainer">
+									{% if section.settings.show_vendor %}
+										<div class="VtlsProductsGridProdCardTextContainer__Vendor">
+											{{ product.vendor }}
+										</div>
+									{% endif %}
+									<p
+										class="VtlsProductsGridProdCardTextContainer__ProductTitle"
+										title="{{ product.title }}"
+									>
+										<a href="{{ product.url }}">{{ product.title }}</a>
+									</p>
+									<div class="VtlsProductsGridProdCardTextContainer__Prices">
+										{% if product.compare_at_price %}
+											<span class="VtlsProductsGridProdCardInitialPrice">
+												{{- product.compare_at_price | money -}}
+											</span>
+										{% endif %}
+										<span class="VtlsProductsGridProdCardPrice {% if product.compare_at_price %}price-with-red{% endif %}">
+											{{ product.price | money }}
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				{% endif %}
+
+				{% comment %}  ***** This block is generated as sample to allow user changes until the products are added to the list ***** {% endcomment %}
+				{% if products_block.settings.product_list.count == 0 %}
+					{% for i in (1..6) %}
+						<div
+							class="
+								VtlsProductsGridProdCard
+								{% if card_has_border_color == 'true' %}VtlsProductsGridProdCard--hasBorder{% endif %}
+								{% if card_has_bg_color == 'true' %}VtlsProductsGridProdCard--hasBackground{% endif %}
+							"
+							{%- if section.settings.show_second_image_on_hover and product.images[1] -%}
+								onmouseover="this.querySelector('img').src = '{{ product.images[1].src | image_url }}'"
+								onmouseout="this.querySelector('img').src = '{{ product.images[0].src | image_url }}'"
+							{%- endif -%}
+						>
+							<div class="VtlsProductsGridProdCard__Container">
+								<div class="VtlsProductsGridProdCardImageContainer VtlsProductsGridProdCardImageContainer--{{ section.settings.image_aspect_ratio }}">
+									<a href="{{ product.url }}">
+										<img
+											src="data:image/webp;base64,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"
+											alt="Image with an abstract figure"
+											width="580"
+											height="580"
+											loading="lazy"
+											sizes="100vw"
+											fetchpriority="low"
+										>
+									</a>
+								</div>
+								<div class="VtlsProductsGridProdCardTextContainer">
+									{% if section.settings.show_vendor %}
+										<div class="VtlsProductsGridProdCardTextContainer__Vendor">VENDOR</div>
+									{% endif %}
+									<p
+										class="VtlsProductsGridProdCardTextContainer__ProductTitle"
+										title="Product title"
+									>
+										<a href="{{ product.url }}">Product title</a>
+									</p>
+									<div class="VtlsProductsGridProdCardTextContainer__Prices">
+										<span class="VtlsProductsGridProdCardPrice"> $270.00 </span>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "❤️ Products Grid & Banner",
+	"max_blocks": 3,
+	"disabled_on": {
+		"groups": ["header", "footer"]
+	},
+	"settings": [
+		{
+			"type": "header",
+			"content": "Product card settings"
+		},
+		{
+			"type": "select",
+			"id": "image_aspect_ratio",
+			"options": [
+				{
+					"value": "square",
+					"label": "Square"
+				},
+				{
+					"value": "portrait",
+					"label": "Portrait"
+				},
+				{
+					"value": "landscape",
+					"label": "Landscape"
+				}
+			],
+			"default": "square",
+			"label": "Product image aspect ratio"
+		},
+		{
+			"type": "color",
+			"id": "product_card_background_color",
+			"label": "Product card background color"
+		},
+		{
+			"type": "color",
+			"id": "product_card_border_color",
+			"label": "Product card border color"
+		},
+		{
+			"type": "range",
+			"id": "product_card_gap",
+			"label": "Space between product cards",
+			"min": 4,
+			"max": 40,
+			"step": 2,
+			"default": 28,
+			"unit": "px"
+		},
+		{
+			"type": "range",
+			"id": "cards_radius",
+			"label": "Corner radius",
+			"min": 0,
+			"max": 40,
+			"step": 2,
+			"default": 0,
+			"unit": "px"
+		},
+		{
+			"type": "checkbox",
+			"id": "show_second_image_on_hover",
+			"label": "Show second image on hover",
+			"default": false
+		},
+		{
+			"type": "checkbox",
+			"id": "show_vendor",
+			"label": "Show vendor",
+			"default": false
+		},
+		{
+			"type": "checkbox",
+			"id": "show_product_rating",
+			"label": "Show product rating",
+			"default": false,
+			"info": "Show reviews in the carousel by activating the Product Reviews app from Theme Sections & AI Pages."
+		},
+		{
+			"type": "select",
+			"id": "product_text_alignment",
+			"options": [
+				{
+					"value": "left",
+					"label": "Left"
+				},
+				{
+					"value": "center",
+					"label": "Center"
+				},
+				{
+					"value": "right",
+					"label": "Right"
+				}
+			],
+			"default": "left",
+			"label": "Text alignment"
+		},
+		{
+			"type": "select",
+			"id": "product_name_vendor_size",
+			"label": "Product name and Vendor size",
+			"options": [
+				{
+					"value": "12",
+					"label": "Small"
+				},
+				{
+					"value": "14",
+					"label": "Medium"
+				},
+				{
+					"value": "16",
+					"label": "Large"
+				}
+			],
+			"default": "14"
+		},
+		{
+			"type": "select",
+			"id": "price_size",
+			"label": "Price size",
+			"options": [
+				{
+					"value": "12",
+					"label": "Small"
+				},
+				{
+					"value": "14",
+					"label": "Medium"
+				},
+				{
+					"value": "16",
+					"label": "Large"
+				}
+			],
+			"default": "16"
+		},
+		{
+			"type": "color",
+			"id": "product_card_text_color",
+			"label": "Text color",
+			"default": "#222222"
+		},
+		{
+			"type": "color",
+			"id": "product_card_discounted_price_color",
+			"label": "Discounted price color",
+			"default": "#222222"
+		},
+		{
+			"type": "header",
+			"content": "Design"
+		},
+		{
+			"type": "color",
+			"id": "section_background",
+			"label": "Section background"
+		},
+		{
+			"type": "range",
+			"id": "section_width",
+			"min": 80,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Section width",
+			"default": 80
+		},
+		{
+			"type": "text",
+			"id": "section_max_width",
+			"label": "Custom max width (optional)",
+			"info": "Section max width in pixels"
+		},
+		{
+			"type": "range",
+			"id": "vertical_padding",
+			"min": 0,
+			"max": 100,
+			"step": 2,
+			"unit": "px",
+			"label": "Top - bottom padding (desktop)",
+			"default": 80
+		},
+		{
+			"type": "range",
+			"id": "vertical_margin",
+			"min": 0,
+			"max": 100,
+			"step": 2,
+			"unit": "px",
+			"label": "Top - bottom margin (desktop)",
+			"default": 0
+		},
+		{
+			"type": "range",
+			"id": "vertical_padding_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 2,
+			"unit": "px",
+			"label": "Top - bottom padding (mobile)",
+			"default": 60
+		},
+		{
+			"type": "range",
+			"id": "vertical_margin_mobile",
+			"min": 0,
+			"max": 100,
+			"step": 2,
+			"unit": "px",
+			"label": "Top - bottom margin (mobile)",
+			"default": 0
+		}
+	],
+	"blocks": [
+		{
+			"type": "heading",
+			"limit": 1,
+			"name": "Heading",
+			"settings": [
+				{
+					"type": "text",
+					"id": "heading",
+					"label": "Heading"				
+				},
+				{
+					"type": "select",
+					"id": "heading_alignment",
+					"label": "Heading alignment",
+					"options": [
+						{
+							"value": "left",
+							"label": "Left"
+						},
+						{
+							"value": "center",
+							"label": "Center"
+						},
+						{
+							"value": "right",
+							"label": "Right"
+						}
+					],
+					"default": "center"
+				},
+				{
+					"type": "select",
+					"id": "heading_size",
+					"label": "Heading size",
+					"options": [
+						{
+							"value": "24",
+							"label": "Small"
+						},
+						{
+							"value": "32",
+							"label": "Medium"
+						},
+						{
+							"value": "48",
+							"label": "Large"
+						}
+					],
+					"default": "32"
+				},
+				{
+					"type": "select",
+					"id": "heading_style",
+					"label": "Heading style",
+					"options": [
+						{
+							"value": "bold",
+							"label": "Bold"
+						},
+						{
+							"value": "regular",
+							"label": "Regular"
+						}
+					],
+					"default": "regular"
+				},
+				{
+					"type": "color",
+					"id": "heading_color",
+					"label": "Heading color",
+					"default": "#222222"
+				}
+			]
+		},
+		{
+			"type": "products",
+			"limit": 1,
+			"name": "Products",
+			"settings": [
+				{
+					"type": "product_list",
+					"id": "product_list",
+					"label": "Products",
+					"limit": 6,
+					"info": "Choose up to 6 products"
+				}
+			]
+		},
+		{
+			"type": "banner",
+			"limit": 1,
+			"name": "Banner",
+			"settings": [
+				{
+					"type": "header",
+					"content": "Image settings"
+				},
+				{
+					"type": "image_picker",
+					"id": "banner_image",
+					"label": "Image"
+				},
+				{
+					"type": "color",
+					"id": "banner_overlay_color",
+					"label": "Banner overlay color",
+					"default": "#222222"
+				},
+				{
+					"type": "range",
+					"id": "bannner_overlay_opacity",
+					"label": "Banner opacity",
+					"min": 0,
+					"max": 100,
+					"step": 2,
+					"unit": "%",
+					"default": 0
+				},
+				{
+					"type": "select",
+					"id": "banner_placement",
+					"label": "Banner placement",
+					"options": [
+						{
+							"value": "left",
+							"label": "Left"
+						},
+						{
+							"value": "right",
+							"label": "Right"
+						}
+					],
+					"default": "left"
+				},
+				{
+					"type": "header",
+					"content": "Text settings"
+				},
+				{
+					"type": "select",
+					"id": "desktop_content_position",
+					"label": "Position on desktop",
+					"options": [
+						{
+							"value": "top-left",
+							"label": "Top left"
+						},
+						{
+							"value": "top-center",
+							"label": "Top center"
+						},
+						{
+							"value": "top-right",
+							"label": "Top right"
+						},
+						{
+							"value": "center-left",
+							"label": "Center left"
+						},
+						{
+							"value": "center-center",
+							"label": "Center center"
+						},
+						{
+							"value": "center-right",
+							"label": "Center right"
+						},
+						{
+							"value": "bottom-left",
+							"label": "Bottom left"
+						},
+						{
+							"value": "bottom-center",
+							"label": "Bottom center"
+						},
+						{
+							"value": "bottom-right",
+							"label": "Bottom right"
+						}
+					],
+					"default": "bottom-left"
+				},
+				{
+					"type": "select",
+					"id": "mobile_content_position",
+					"label": "Position on mobile",
+					"options": [
+						{
+							"value": "top",
+							"label": "Top"
+						},
+						{
+							"value": "center",
+							"label": "Center"
+						},
+						{
+							"value": "bottom",
+							"label": "Bottom"
+						}
+					],
+					"default": "center"
+				},
+				{
+					"type": "text",
+					"id": "banner_heading",
+					"label": "Heading",
+					"default": "Banner Title"
+				},
+				{
+					"type": "select",
+					"id": "banner_heading_size",
+					"label": "Heading size",
+					"options": [
+						{
+							"value": "24",
+							"label": "Small"
+						},
+						{
+							"value": "32",
+							"label": "Medium"
+						},
+						{
+							"value": "48",
+							"label": "Large"
+						}
+					],
+					"default": "32"
+				},
+				{
+					"type": "select",
+					"id": "banner_heading_style",
+					"label": "Heading style",
+					"options": [
+						{
+							"value": "regular",
+							"label": "Regular"
+						},
+						{
+							"value": "bold",
+							"label": "Bold"
+						}
+					],
+					"default": "regular"
+				},
+				{
+					"type": "richtext",
+					"id": "banner_description",
+					"label": "Description",
+					"default": "<p>Share details about your exclusive limited-time offer or special promotion.</p>"
+				},
+				{
+					"type": "select",
+					"id": "banner_description_size",
+					"label": "Description size",
+					"options": [
+						{
+							"value": "14",
+							"label": "Small"
+						},
+						{
+							"value": "16",
+							"label": "Medium"
+						},
+						{
+							"value": "20",
+							"label": "Large"
+						}
+					],
+					"default": "16"
+				},
+				{
+					"type": "color",
+					"id": "banner_text_color",
+					"label": "Text color",
+					"default": "#222222"
+				},
+				{
+					"type": "header",
+					"content": "Button settings"
+				},
+				{
+					"type": "text",
+					"id": "banner_button_label",
+					"label": "Label",
+					"default": "BUTTON LABEL"
+				},
+				{
+					"type": "url",
+					"id": "banner_button_link",
+					"label": "URL"
+				},
+				{
+					"type": "select",
+					"id": "banner_button_style",
+					"label": "Button style",
+					"options": [
+						{
+							"value": "solid",
+							"label": "Filled"
+						},
+						{
+							"value": "outline",
+							"label": "Outline"
+						},
+						{
+							"value": "link",
+							"label": "Link"
+						}
+					],
+					"default": "solid"
+				},
+				{
+					"type": "color",
+					"id": "banner_button_text_color",
+					"label": "Text color",
+					"default": "#ffffff"
+				},
+				{
+					"type": "color",
+					"id": "banner_button_background_color",
+					"label": "Background color",
+					"default": "#222222",
+					"visible_if": "{{ block.settings.banner_button_style == 'solid' }}"
+				},
+
+				{
+					"type": "color",
+					"id": "banner_button_border_color",
+					"label": "Border color",
+					"default": "#222222",
+					"visible_if": "{{ block.settings.banner_button_style == 'outline' }}"
+				},
+				{
+					"type": "range",
+					"id": "banner_button_corner_radius",
+					"min": 0,
+					"max": 100,
+					"step": 2,
+					"unit": "px",
+					"label": "Corner radius",
+					"visible_if": "{{ block.settings.banner_button_style != 'link' }}",
+					"default": 0
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "❤️ Theme Sections & AI Pages: Products Grid & Banner",
+			"category": "Theme Sections & AI Pages sections",
+			"blocks": [
+				{
+					"type": "heading",
+					"settings": {}
+				},
+				{
+					"type": "products",
+					"settings": {}
+				},
+				{
+					"type": "banner",
+					"settings": {}
+				}
+			]
+		}
+	]
+}
+{% endschema %}
+
+{% style %}
+	.Vtls-{{ section.id | handle }} {
+		--section-vertical-padding: {{- section.settings.vertical_padding -}}px;
+		--section-vertical-padding-mobile: {{- section.settings.vertical_padding_mobile -}}px;
+		--section-vertical-margin: {{- section.settings.vertical_margin -}}px;
+		--section-vertical-margin-mobile: {{- section.settings.vertical_margin_mobile -}}px;
+		--section-background-color: {{ section.settings.section_background }};
+		--section-max-width: {{- section.settings.section_max_width -}}px;
+		--section-width: {{- section.settings.section_width -}}%;
+
+		--cards-radius: {{ section.settings.cards_radius }}px;
+
+		--section-heading-color: {{ heading_block.settings.heading_color }};
+		--section-heading-alignment: {{ heading_block.settings.heading_alignment }};
+		--section-heading-size: {{ heading_block.settings.heading_size }}px;
+
+		--product-card-background-color: {{ section.settings.product_card_background_color }};
+		--product-card-text-alignment: {{ section.settings.product_text_alignment }};
+		--product-card-border-color: {{ section.settings.product_card_border_color }};
+		--product-card-discounted-price-color: {{ section.settings.product_card_discounted_price_color }};
+		--product-card-space-between: {{ section.settings.product_card_gap }}px;
+		--product-card-text-color: {{ section.settings.product_card_text_color }};
+		--product-name-and-vendor-size: {{ section.settings.product_name_vendor_size }}px;
+		--product-price-size: {{ section.settings.price_size }}px;
+		--product-card-rating: {%- if section.settings.show_product_rating != true -%}none{%- else -%}block{%- endif -%};
+
+		--banner-overlay-color: {{ banner_block.settings.banner_overlay_color }};
+		--banner-overlay-opacity: {{ banner_block.settings.bannner_overlay_opacity }}%;
+		--banner-heading: {{ banner_block.settings.banner_heading }};
+		--banner-heading-size: {{ banner_block.settings.banner_heading_size }}px;
+		--banner-description: {{ banner_block.settings.banner_description }};
+		--banner-description-size: {{ banner_block.settings.banner_description_size }}px;
+		--banner-text-color: {{ banner_block.settings.banner_text_color }};
+		--banner-button-text-color: {{ banner_block.settings.banner_button_text_color }};
+		--banner-button-corner-radius: {{ banner_block.settings.banner_button_corner_radius }}px;
+		--banner-button-background-color: {{ banner_block.settings.banner_button_background_color }};
+		--banner-button-border-color: {{ banner_block.settings.banner_button_border_color }};
+	}
+
+	
+
+.Vtls-{{ section.id | handle }}{background-color:var(--section-background-color)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner{margin:var(--section-vertical-margin-mobile) auto;padding:var(--section-vertical-padding-mobile) 0;list-style-type:none;gap:var(--vtl-space-32);display:flex;flex-direction:column;max-width:var(--section-max-width);width:var(--section-width)}@media(min-width: 992px){.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner{margin:var(--section-vertical-margin) auto;padding:var(--section-vertical-padding) 0 var(--section-vertical-padding) 0;gap:var(--vtl-space-40);max-width:var(--section-max-width);width:var(--section-width)}}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner--fullWidth .VtlsProductsGridBanner__Content,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner--fullWidth .VtlsProductsGridBanner__Heading{padding:0 var(--vtl-space-20)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Heading{margin:0;font-size:calc(var(--section-heading-size)*.75);text-decoration:none;color:var(--section-heading-color);display:block;text-align:var(--section-heading-alignment);width:100%;pointer-events:auto}@media(min-width: 992px){.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Heading{font-size:var(--section-heading-size)}}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Heading--style-regular{font-weight:var(--vtl-font-weight-400)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Heading--style-bold{font-weight:var(--vtl-font-weight-600)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Banner{width:100%;max-width:100%;position:relative;overflow:hidden;border-radius:var(--cards-radius)}@media(min-width: 992px){.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Banner{width:40%}}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Banner::before{position:absolute;top:0;left:0;z-index:1;display:block;width:100%;height:100%;content:"";background-color:var(--banner-overlay-color);opacity:var(--banner-overlay-opacity)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerImage{aspect-ratio:3/4}@media(min-width: 992px){.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerImage{aspect-ratio:unset}}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerImage img{display:block;position:absolute;top:0;left:0;height:100%;width:100%;object-fit:cover}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Content{display:flex;gap:var(--product-card-space-between);flex-direction:column}@media(min-width: 992px){.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Content--bannerPlacement-left{flex-direction:row}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Content--bannerPlacement-right{flex-direction:row-reverse}}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent{position:absolute;display:flex;flex-direction:column;gap:var(--vtl-space-8);max-width:480px;width:100%;padding:var(--vtl-space-24);z-index:2}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent--mobilePosition-top{top:0;left:50%;transform:translate(-50%, 0);text-align:center;align-items:center}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent--mobilePosition-center{top:50%;left:50%;transform:translate(-50%, -50%);text-align:center;align-items:center}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent--mobilePosition-bottom{top:unset;bottom:0;left:50%;transform:translate(-50%, 0);text-align:center;align-items:center}@media(min-width: 992px){.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent{padding:var(--vtl-space-40)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent--smallPadding{padding:var(--vtl-space-16)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent--desktopPosition-top-left{top:0;left:0;text-align:left;transform:unset;align-items:flex-start;justify-content:flex-start}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent--desktopPosition-top-center{top:0;left:50%;transform:translate(-50%, 0);text-align:center;align-items:center;justify-content:center;height:fit-content}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent--desktopPosition-top-right{top:0;right:0;height:fit-content;left:unset;text-align:right;transform:unset;align-items:flex-end;justify-content:flex-end}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent--desktopPosition-center-left{top:50%;bottom:unset;left:0;transform:translate(0, -50%);text-align:left;align-items:flex-start;justify-content:flex-start}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent--desktopPosition-center-center{top:50%;left:50%;transform:translate(-50%, -50%);text-align:center;align-items:center;justify-content:center}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent--desktopPosition-center-right{top:50%;right:0;bottom:unset;left:unset;transform:translate(0, -50%);text-align:right;align-items:flex-end;justify-content:flex-end}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent--desktopPosition-bottom-left{bottom:0;left:0;text-align:left;top:unset;transform:unset;align-items:flex-start;justify-content:flex-start}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent--desktopPosition-bottom-center{top:unset;bottom:0;left:50%;transform:translate(-50%, 0);text-align:center;align-items:center;justify-content:center}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent--desktopPosition-bottom-right{bottom:0;right:0;top:unset;left:unset;transform:unset;text-align:right;align-items:flex-end;justify-content:flex-end}}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Heading{margin:0;z-index:1;font-size:calc(var(--banner-heading-size)*.75);color:var(--banner-text-color)}@media(min-width: 992px){.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Heading{font-size:var(--banner-heading-size)}}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Heading--style-regular{font-weight:var(--vtl-font-weight-400)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Heading--style-bold{font-weight:var(--vtl-font-weight-600)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description{z-index:1}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description p,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description ul,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description ol{margin:0;font-size:calc(var(--banner-description-size)*.88);color:var(--banner-text-color)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description h1,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description h2,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description h3,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description h4,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description h5,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description h6{color:var(--banner-text-color);margin:0;padding:0}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description a{color:var(--block-description-color);margin:0;padding:0;text-decoration:underline;text-underline-offset:var(--vtl-space-2);transition:opacity .3s ease-in}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description a:hover{opacity:.85}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description ul,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description ol{padding-left:var(--vtl-space-20)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description--alignment-center ul,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description--alignment-center ol,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description--alignment-right ul,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description--alignment-right ol{list-style-position:inside}@media(min-width: 992px){.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description p,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description ul,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent__Description ol{font-size:var(--banner-description-size)}}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent .VtlsProductsGridBannerTextContent__Button{z-index:1;display:flex;gap:var(--vtl-space-24);padding-top:var(--vtl-space-8);flex-wrap:wrap}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent .VtlsProductsGridBannerTextContent__Button .VtlsProductsGridBannerTextContentButton{display:inline-flex;justify-content:center;align-items:center;cursor:pointer;font:inherit;font-size:var(--vtl-font-size-14);text-decoration:var(--vtl-text-decoration-none);-webkit-appearance:none;appearance:none;width:fit-content;padding:var(--vtl-space-16) var(--vtl-space-20);transition:all .3s ease-in;line-height:1}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent .VtlsProductsGridBannerTextContent__Button .VtlsProductsGridBannerTextContentButton:hover{opacity:.85}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent .VtlsProductsGridBannerTextContent__Button .VtlsProductsGridBannerTextContentButton--solid{color:var(--banner-button-text-color, var(--vtl-color-text-on-bg-fill-on-light));background-color:var(--banner-button-background-color, var(--vtl-color-bg-fill-default-on-light));border-radius:var(--banner-button-corner-radius)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent .VtlsProductsGridBannerTextContent__Button .VtlsProductsGridBannerTextContentButton--outline{color:var(--banner-button-text-color);background-color:rgba(0,0,0,0);border:var(--vtl-border-width-1) solid var(--banner-button-border-color);border-radius:var(--banner-button-corner-radius)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner .VtlsProductsGridBannerTextContent .VtlsProductsGridBannerTextContent__Button .VtlsProductsGridBannerTextContentButton--link{color:var(--banner-button-text-color);background-color:rgba(0,0,0,0);padding:var(--vtl-space-2) 0;border:var(--vtl-space-0);border-radius:var(--vtl-space-0);text-decoration:var(--vtl-text-decoration-underline);text-underline-offset:var(--vtl-space-4)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products{display:flex;flex-wrap:wrap;gap:var(--product-card-space-between);width:100%;justify-content:center;align-items:stretch}@media(min-width: 992px){.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products{width:60%}}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard{box-sizing:border-box;padding:0;overflow:hidden;height:auto;display:flex;flex-direction:column;justify-content:space-between;background-color:var(--product-card-background-color);border-radius:var(--cards-radius);width:calc((100% - var(--product-card-space-between))/2)}@media(min-width: 992px){.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard{width:calc((100% - var(--product-card-space-between)*2)/3)}}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard--ShowCursorPointer:hover{cursor:pointer}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardImageContainer--square,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardImageContainer--portrait,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardImageContainer--landscape{position:relative;overflow:hidden}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardImageContainer--square img,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardImageContainer--portrait img,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardImageContainer--landscape img{position:absolute;object-fit:cover;border-radius:var(--cards-radius) var(--cards-radius) 0 0;top:0;left:0;width:100%;height:100%;transition:transform .3s ease-in-out}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardImageContainer--defaultHover:hover img{transform:scale(1.03)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardImageContainer--square{aspect-ratio:1/1;height:auto}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardImageContainer--portrait::before{content:"";display:block;padding-top:120%}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardImageContainer--landscape::before{content:"";display:block;padding-top:75%}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardTextContainer{padding-top:var(--vtl-space-12);display:flex;text-align:var(--product-card-text-alignment);flex-direction:column;row-gap:var(--vtl-space-6)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardTextContainer__Vendor{font-size:var(--product-name-and-vendor-size);text-transform:uppercase;line-height:var(--vtl-line-height-140);opacity:.5;color:var(--product-card-text-color)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardTextContainer__Vendor:empty{display:none}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardTextContainer__ProductTitle{font-size:var(--product-name-and-vendor-size);line-height:var(--vtl-line-height-140);color:var(--product-card-text-color);margin:0;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardTextContainer__ProductTitle:empty{display:none}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardTextContainer__ProductTitle a{color:inherit;text-decoration:var(--vtl-text-decoration-none)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardTextContainer__Prices{display:flex;column-gap:var(--vtl-space-8);flex-wrap:wrap;justify-content:var(--product-card-text-alignment);align-items:center}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardTextContainer__Prices .VtlsProductsGridProdCardPrice{font-size:var(--product-price-size);line-height:var(--vtl-line-height-140);color:var(--product-card-text-color)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardTextContainer__Prices .VtlsProductsGridProdCardPrice.price-with-red{color:var(--product-card-discounted-price-color)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardTextContainer__Prices .VtlsProductsGridProdCardPrice:empty{display:none}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardTextContainer__Prices .VtlsProductsGridProdCardInitialPrice{font-size:var(--product-price-size);line-height:var(--vtl-line-height-140);text-decoration:var(--vtl-text-decoration-line-through);opacity:.5;color:var(--product-card-text-color)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardTextContainer__Prices .VtlsProductsGridProdCardInitialPrice:empty{display:none}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardTextContainer .vtl-pr-review-stars-snippet{justify-content:var(--product-card-text-alignment) !important;font-size:var(--vtl-font-space-16) !important;color:var(--vtl-color-text-default-on-light) !important;padding-top:var(--vtl-space-6)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard__Container .VtlsProductsGridProdCardTextContainer .vtl-pr-review-stars-snippet-container{display:var(--product-card-rating)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard--hasShadow{position:relative;overflow:visible}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard--hasShadow::after{position:absolute;top:0;left:0;right:0;bottom:0;content:"";box-shadow:0 0 var(--vtl-space-24) 0 var(--vtl-color-border-hover-on-dark)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard--hasBorder{border:var(--vtl-border-width-1) solid var(--product-card-border-color)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard--hasBorder .VtlsProductsGridProdCardImageContainer{padding:var(--vtl-space-12)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard--hasBackground .VtlsProductsGridProdCardTextContainer,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard--hasBorder .VtlsProductsGridProdCardTextContainer,.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard--hasShadow .VtlsProductsGridProdCardTextContainer{padding:var(--vtl-space-12)}.Vtls-{{ section.id | handle }} .VtlsProductsGridBanner__Products .VtlsProductsGridProdCard:hover .VtlsProductsGridProdCardTextContainer .VtlsProductsGridProdCardTextContainer__ProductTitle a{text-decoration:var(--vtl-text-decoration-underline)}
+
+{% endstyle %}
+
+<script>
+	(function () {
+		const uninstallMessage = 'Displaying this section requires an active Theme Sections & AI Pages subscription. Reinstall the <a href="https://apps.shopify.com/theme-sections-ai-page-builder" target="_blank">Theme Sections & AI Pages app</a> to activate it or consider removing the section.';
+		const downgradeMessage = 'You downgraded to a free plan. You need to upgrade your <a href="https://apps.shopify.com/theme-sections-ai-page-builder" target="_blank">Theme Sections & AI Pages app</a> plan to activate it or consider removing the section.';
+		const projectId = '5';
+		const sectionsSelector = '.shopify-section';
+		const apps = {
+			1: {
+				prefix: 'vitals',
+				hostname: 'https://appsolve.io'
+			},
+			5: {
+				prefix: 'tsapb',
+				hostname: 'https://theme-sections.square-apps.com'
+			}
+		};
+
+		const cacheKeysMetaFields = '{{ shop.metafields.vitals.tsck }}';
+		const shopId = '{{ shop.id }}';
+
+		const getHostname = () => {
+			if (apps[projectId].hostname) {
+				return apps[projectId].hostname;
+			}
+
+			console.error(`hostname for appId ${projectId} cannot be determined.`);
+			return undefined;
+		}
+
+		const disableSection = (message, selector) => {
+			const mainContainer = document.querySelector(selector);
+			const contentContainer = document.querySelector(`${selector} > section`);
+
+			if ('{{ request.design_mode }}' === 'true') {
+				contentContainer.innerHTML = `<h2 class="VtlsUninstallBG"><div class="VtlsUninstallBG__Text">${message}</div></h2>`;
+			} else {
+				mainContainer.style.display = 'none';
+				mainContainer.remove();
+			}
+		};
+
+		const getThemeSectionIdsByUUID = (installedThemeSections, uuid, appId) => {
+			const listIds = [];
+
+			installedThemeSections.forEach((installedThemeSection) => {
+				if (installedThemeSection.id.includes(`${apps[appId].prefix}_${uuid}`)) {
+					listIds.push(installedThemeSection.id);
+				}
+			})
+
+			return listIds;
+		}
+
+		const getThemeSectionsStatusList = (url) => fetch(url, {
+			method: 'GET',
+			headers: { 'Content-Type': 'application/json' },
+		}).then((response) => response.json());
+
+		const evaluateThemeSections = (url) => {
+			getThemeSectionsStatusList(url).then(response => {
+				const { data, f, i } = response;
+				const installedThemeSections = document.querySelectorAll(sectionsSelector);
+
+				data.forEach((themeSection) => {
+					const { e, u, a } = themeSection;
+
+					if (!e) {
+						const themeSectionsWithUUID = getThemeSectionIdsByUUID(installedThemeSections, u, a);
+						let message = '';
+
+						if (f) {
+							message = downgradeMessage;
+						}
+
+						if (!i) {
+							message = uninstallMessage;
+						}
+
+						themeSectionsWithUUID.forEach((themeSectionSelector) => {
+							disableSection(message, `#${themeSectionSelector}`);
+						})
+					}
+				});
+			})
+		}
+
+		if (shopId) {
+			if (window.vtlsSecurityCheckStarted === undefined) {
+				window.vtlsSecurityCheckStarted = true;
+
+				let url = '';
+				const hostname = getHostname();
+
+				if (!hostname) {
+					return;
+				}
+
+				const baseUrl = `${hostname}/bundle/api/v2/sf/ts`;
+
+				if (cacheKeysMetaFields) {
+					url = `${baseUrl}/${shopId}/${cacheKeysMetaFields}.json`;
+				} else {
+					const timestamp = Math.round(new Date().getTime() / 1000 / 10000) * 10000;
+					url = `${baseUrl}/${shopId}/${timestamp}.json`;
+				}
+
+				evaluateThemeSections(url);
+			}
+		}
+	})();
+</script>
+
+{% style %}
+	
+
+.VtlsUninstallBG{background-color:var(--vtl-color-bg-fill-inverse-on-light);background-image:url("data:image/avif;base64,iVBORw0KGgoAAAANSUhEUgAABOcAAABkCAQAAABnAJxfAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB+gLFQgmAgUXFkMAAARaSURBVHja7daxbSRBEATB8ZzvKw0h1dcIlJS4jl25Azlavffn9/3v++e//+vvCwqFQqFQKBRKSklEUCgUCoVCoVAMOgqFQqFQKJSzSiKCQqFQKBQKhWLQUSgUCoVCoZxVEhEUCoVCoVAoFIOOQqFQKBQK5VOURASFQqFQKBQKZVUSERQKhUKhUCiUVUlEUCgUCoVCoVBWZbtOPoVCoVAoFArlovIKERQKhUKhUCiUVXmFCAqFQqFQKBTKqrxCBIVCoVAoFAplVV4hgkKhUCgUCoUyK4kICoVCoVAoFMqqJCIoFAqFQqFQKKuSiKBQKBQKhUKhrEoigkKhUCgUCoVi0FEoFAqFQqGcVRIRFAqFQqFQKBSDjkKhUCgUCuWskoigUCgUCoVCoRh0FAqFQqFQKGeVRASFQqFQKBQKxaCjUCgUCoVCOaskIigUCoVCoVAoBh2FQqFQKBTKWSURQaFQKBQKhUIx6CgUCoVCoVDOKokICoVCoVAoFIpBR6FQKBQKhXJWSURQKBQKhUKhUAw6CoVCoVAolLNKIoJCoVAoFAqFYtBRKBQKhUKhnFUSERQKhUKhUCgUg45CoVAoFArlrJKIoFAoFAqFQqEYdBQKhUKhUChnlUQEhUKhUCgUCsWgo1AoFAqFQvkUJRFBoVAoFAqFQlmVRASFQqFQKBQKZVUSERQKhUKhUCiUVdmuk0+hUCgUCoVCuai8QgSFQqFQKBQKZVVeIYJCoVAoFAqFsiqvEEGhUCgUCoVCWZVXiKBQKBQKhUKhzEoigkKhUCgUCoWyKokICoVCoVAoFMqqJCIoFAqFQqFQKKuSiKBQKBQKhUKhGHQUCoVCoVAoZ5VEBIVCoVAoFArFoKNQKBQKhUI5qyQiKBQKhUKhUCgGHYVCoVAoFMpZJRFBoVAoFAqFQjHoKBQKhUKhUM4qiQgKhUKhUCgUikFHoVAoFAqFclZJRFAoFAqFQqFQDDoKhUKhUCiUs0oigkKhUCgUCoVi0FEoFAqFQqGcVRIRFAqFQqFQKBSDjkKhUCgUCuWskoigUCgUCoVCoRh0FAqFQqFQKGeVRASFQqFQKBQKxaCjUCgUCoVCOaskIigUCoVCoVAoBh2FQqFQKBTKWSURQaFQKBQKhUIx6CgUCoVCoVA+RUlEUCgUCoVCoVBWJRFBoVAoFAqFQlmVRASFQqFQKBQKZVW26+RTKBQKhUKhUC4qrxBBoVAoFAqFQlmVV4igUCgUCoVCoazKK0RQKBQKhUKhUFblFSIoFAqFQqFQKLOSiKBQKBQKhUKhrEoigkKhUCgUCoWyKokICoVCoVAoFMqqJCIoFAqFQqFQKAYdhUKhUCgUylklEUGhUCgUCoVCMegoFAqFQqFQziqJCAqFQqFQKBSKQUehUCgUCoVyVklEUCgUCoVCoVAMOgqFQqFQKJSzSiKCQqFQKBQKhWLQUSgUCoVCoZxVEhEUCoVCoVAoFIOOQqFQKBQK5dOVX5nMB52iezhxAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDI0LTExLTIxVDA4OjM4OjAyKzAwOjAw30WrCwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyNC0xMS0yMVQwODozODowMiswMDowMK4YE7cAAAAodEVYdGRhdGU6dGltZXN0YW1wADIwMjQtMTEtMjFUMDg6Mzg6MDIrMDA6MDD5DTJoAAAAAElFTkSuQmCC");background-position:center;background-size:cover;text-align:center;padding:var(--vtl-space-32);margin:0}.VtlsUninstallBG__Text{color:var(--vtl-color-text-disable-on-light);font-family:Inter,sans-serif;font-size:var(--vtl-font-size-14);font-weight:var(--vtl-font-weight-400);line-height:var(--vtl-line-height-140);padding:var(--vtl-space-16) var(--vtl-space-16) var(--vtl-space-16) var(--vtl-space-40);background-color:var(--vtl-color-bg-fill-inverse-on-light);display:inline-block}.VtlsUninstallBG__Text::before{content:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22none%22%3E%0A%09%09%09%3Cpath%20d%3D%22M9.99994%206.75C10.4142%206.75%2010.7499%207.08579%2010.7499%207.5V11C10.7499%2011.4142%2010.4142%2011.75%209.99994%2011.75C9.58573%2011.75%209.24994%2011.4142%209.24994%2011V7.5C9.24994%207.08579%209.58573%206.75%209.99994%206.75Z%22%20fill%3D%22%23B28400%22%2F%3E%0A%09%09%09%3Cpath%20d%3D%22M11%2013.5C11%2014.0523%2010.5523%2014.5%2010%2014.5C9.44772%2014.5%209%2014.0523%209%2013.5C9%2012.9477%209.44772%2012.5%2010%2012.5C10.5523%2012.5%2011%2012.9477%2011%2013.5Z%22%20fill%3D%22%23B28400%22%2F%3E%0A%09%09%09%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M10%203.5C8.95471%203.5%208.21616%204.20232%207.84762%204.94672C7.65565%205.33448%206.75984%207.0441%205.84305%208.79353L5.81531%208.84646C4.9229%2010.5493%204.01714%2012.2777%203.80716%2012.702C3.4351%2013.4537%203.32931%2014.4519%203.89953%2015.316C4.46911%2016.1791%205.44222%2016.5%206.36356%2016.5L13.6364%2016.5C14.5577%2016.5%2015.5308%2016.1791%2016.1004%2015.316C16.6707%2014.4519%2016.5649%2013.4537%2016.1928%2012.702C15.9832%2012.2784%2015.08%2010.555%2014.1889%208.85476L14.1569%208.79352C13.24%207.044%2012.3443%205.33454%2012.1524%204.94693C11.784%204.20242%2011.0454%203.5%2010%203.5ZM9.1919%205.61225C9.59605%204.79592%2010.4041%204.79592%2010.8081%205.61225C11.0102%206.02061%2011.9201%207.75686%2012.8296%209.49243C13.7383%2011.2262%2014.6466%2012.9594%2014.8485%2013.3673C15.2525%2014.1837%2014.8485%2015%2013.6364%2015L6.36356%2015C5.1515%2015%204.74746%2014.1837%205.1515%2013.3673C5.35376%2012.9587%206.26468%2011.2205%207.1748%209.4838C8.08283%207.75111%208.99005%206.01994%209.1919%205.61225Z%22%20fill%3D%22%23B28400%22%2F%3E%0A%09%09%3C%2Fsvg%3E");position:absolute;width:var(--vtl-space-20);height:var(--vtl-space-20);margin-left:calc(-1*var(--vtl-space-24))}.VtlsUninstallBG__Text a{color:var(--vtl-color-text-disable-on-light)}.VtlsUninstallBG__Text a:hover{text-decoration:none}
+
+{% endstyle %}
+
