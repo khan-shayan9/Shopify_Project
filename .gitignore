@@ -1,0 +1,21 @@
+# Shopify CLI / Theme Kit
+.shopifyignore
+config.yml
+config/settings_data.json.bak
+
+# Environment variables
+.env
+.env.local
+
+# Dependencies (if any Node tooling is added later)
+node_modules/
+
+# Editor & OS files
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Logs
+*.log
